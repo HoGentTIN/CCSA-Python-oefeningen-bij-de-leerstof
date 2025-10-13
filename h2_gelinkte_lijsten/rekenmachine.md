@@ -18,7 +18,7 @@ Onze rekenmachine maakt enkel gebruik van de volgende binaire operatoren:
 ## Evalueren van expressie in postfix notatie
 
 Schrijf een methode `evalueer_postfix(e)` waaraan een sequentie van tokens `e` wordt meegegeven. Elk token is ofwel een getal ofwel één van vier operatoren. Deze methode retourneert de waarde van de expressie.
-Je mag er van uitgaan dat het een correctie expressie in postfix notatie betreft.
+Je mag er van uitgaan dat het een correcte expressie in postfix notatie betreft.
 ```
 >>> evalueer_postfix(["3", "5", "*"])
 15.0
