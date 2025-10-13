@@ -1,11 +1,10 @@
-# h1_zoeken_en_sorteren/tests/test_sorteren_door_selectie.py
 import pytest
-from h1_zoeken_en_sorteren.sorteren_door_selectie import selection_sort_vooraan  # pad evt. aanpassen
+from h1_zoeken_en_sorteren.sorteren_door_selectie import selection_sort_vooraan
 
 @pytest.mark.timeout(10)
 @pytest.mark.parametrize("rij, expected_stdout", [
-    ([], ""),                 # n=0 -> geen prints
-    ([42], ""),               # n=1 -> geen prints
+    ([], ""),                 # n=0 -> niets printen
+    ([42], ""),               # n=1 -> niets printen
 
     # Klein: al gesorteerd
     ([1, 2, 3],
@@ -23,7 +22,7 @@ from h1_zoeken_en_sorteren.sorteren_door_selectie import selection_sort_vooraan 
      "[1, 1, 2, 2]\n"
      "[1, 1, 2, 2]"),
 
-    # --- Dodona 0.in ---
+    # Middellange rij, willekeurige volgorde
     ([44, 55, 12, 42, 94, 18, 6, 67],
      "[6, 55, 12, 42, 94, 18, 44, 67]\n"
      "[6, 12, 55, 42, 94, 18, 44, 67]\n"
@@ -33,7 +32,7 @@ from h1_zoeken_en_sorteren.sorteren_door_selectie import selection_sort_vooraan 
      "[6, 12, 18, 42, 44, 55, 94, 67]\n"
      "[6, 12, 18, 42, 44, 55, 67, 94]"),
 
-    # --- Dodona 1.in ---
+    # Middellange rij, omgekeerd gesorteerd
     ([10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
      "[1, 9, 8, 7, 6, 5, 4, 3, 2, 10]\n"
      "[1, 2, 8, 7, 6, 5, 4, 3, 9, 10]\n"
@@ -45,7 +44,7 @@ from h1_zoeken_en_sorteren.sorteren_door_selectie import selection_sort_vooraan 
      "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n"
      "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"),
 
-    # --- Dodona 2.in ---
+    # Lange rij, kleinste element al vooraan
     ([4, 5, 9, 8, 7, 12, 46, 59, 13, 43, 56, 100, 48, 789, 23, 456, 89, 10, 77, 600],
      "[4, 5, 9, 8, 7, 12, 46, 59, 13, 43, 56, 100, 48, 789, 23, 456, 89, 10, 77, 600]\n"
      "[4, 5, 9, 8, 7, 12, 46, 59, 13, 43, 56, 100, 48, 789, 23, 456, 89, 10, 77, 600]\n"

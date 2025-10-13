@@ -1,8 +1,6 @@
-# tests/test_woordladder.py
 import pytest
 from pathlib import Path
 
-# PAS HIER AAN naar jouw modulepad
 from h5_graafalgoritmes.woordladder import (
     precies_een_verschillend,
     maak_graaf,
@@ -10,9 +8,8 @@ from h5_graafalgoritmes.woordladder import (
     geef_pad,
 )
 
-# ---------- Case 0: precies_een_verschillend ----------
 @pytest.mark.timeout(1)
-def test_precies_een_verschillend_examples():
+def test_precies_een_verschillend():
     assert precies_een_verschillend("span", "spat") is True
     assert precies_een_verschillend("test", "tast") is True
     assert precies_een_verschillend("test", "test") is False
@@ -21,7 +18,6 @@ def test_precies_een_verschillend_examples():
     assert precies_een_verschillend("TEST", "test") is False
 
 
-# ---------- Case 1: maak_graaf ----------
 @pytest.mark.timeout(1)
 def test_maak_graaf_2letters():
     words = ["aa", "ab", "ac", "ad",
@@ -50,15 +46,14 @@ def test_maak_graaf_2letters():
     assert g == expected
 
 
-# ---------- Case 2: kortste_pad ----------
 @pytest.mark.timeout(1)
-def test_kortste_pad_from_aa_pred_map():
+def test_kortste_pad_voorbeeld_uit_opgave():
     words = ["aa", "ab", "ac", "ad",
              "ba", "bb", "bc", "bd",
              "ca", "cb", "cc", "cd",
              "da", "db", "dc", "dd"]
-    g = maak_graaf(words)
-    pred = kortste_pad(g, "aa")
+    graaf = maak_graaf(words)
+    pred = kortste_pad(graaf, "aa")
     expected_pred = {
         'aa': 'aa', 'ab': 'aa', 'ac': 'aa', 'ad': 'aa',
         'ba': 'aa', 'bb': 'ab', 'bc': 'ac', 'bd': 'ad',
@@ -68,9 +63,8 @@ def test_kortste_pad_from_aa_pred_map():
     assert pred == expected_pred
 
 
-# ---------- Case 3: geef_pad ----------
 @pytest.mark.timeout(1)
-def test_geef_pad_examples():
+def test_geef_pad_2letters():
     words = ["aa", "ab", "ac", "ad",
              "ba", "bb", "bc", "bd",
              "ca", "cb", "cc", "cd",
@@ -82,34 +76,22 @@ def test_geef_pad_examples():
     assert geef_pad(pred, "ba") == ['aa', 'ba']
 
 
-# h5_graafalgoritmes/tests/test_woordladder_case4.py
-import pytest
-from pathlib import Path
-
-# PAS AAN naar jouw modulepad:
-from h5_graafalgoritmes.woordladder import maak_graaf, kortste_pad, geef_pad
-
-
-# h5_graafalgoritmes/tests/test_woordladder_case4_transcribed.py
-import pytest
-from pathlib import Path
-
-# PAS AAN naar jouw modulepad:
-from h5_graafalgoritmes.woordladder import maak_graaf, kortste_pad, geef_pad
 
 @pytest.mark.timeout(50)  # maak_graaf is O(n^2) op 5757 woorden: geef wat tijd
-def test_case4_transcribed_from_repl():
-    here = Path(__file__).parent
-    words_path = here / "sgb-words.txt"
-
-    # 1) woordenlijst laden (zoals in 4.in)
+def test_scenario_met_uitgebreid_woordenboek():
+   
+   # 1) woordenlijst laden
+    current_folder = Path(__file__).parent
+    words_path = current_folder / "sgb-words.txt"
     words = [w.strip() for w in words_path.read_text(encoding="utf-8").splitlines()]
-    assert len(words) == 5757  # sanity check uit je REPL
+    assert len(words) == 5757  # controle: alle woorden correct ingeladen?
 
     # 2) graaf bouwen
     graaf = maak_graaf(words)
 
-    # 3) lokale buur-sets (exact zoals in 4.in)
+    # 3) tests uitvoeren
+
+    # test enkele buur-sets
     assert graaf['which'] == {'whish'}
     assert graaf['whish'] == {'whisk', 'shish', 'which', 'whist'}
     assert graaf['shish'] == {'whish', 'shush', 'swish'}
@@ -117,19 +99,19 @@ def test_case4_transcribed_from_repl():
     assert graaf['slush'] == {'shush', 'plush', 'slash', 'slosh', 'flush', 'blush'}
     assert graaf['blush'] == {'brush', 'plush', 'slush', 'flush', 'blash'}
 
-    # 4) kortste paden vanaf 'which'
+    # test kortste paden vanaf 'which'
     pred = kortste_pad(graaf, 'which')
     assert pred['blush'] == 'slush'
     assert pred['slush'] == 'shush'
 
-    # expliciet pad naar 'blush'
+    # test pad van 'which' naar 'blush'
     assert geef_pad(pred, 'blush') == ['which', 'whish', 'shish', 'shush', 'slush', 'blush']
 
-    # aantal woorden verbonden met 'which'
+    # aantal woorden bereikbaar uit 'which'
     connected_count = sum(1 for w in words if pred[w] is not None)
     assert connected_count == 4493
 
-    # alfabetisch kleinste en grootste woord NIET verbonden met 'which'
+    # alfabetisch kleinste en grootste woord NIET bereikbaar uit 'which'
     not_connected_sorted = sorted([w for w in words if pred[w] is None])
     assert not_connected_sorted[0] == 'aargh'
     assert not_connected_sorted[-1] == 'zowie'
@@ -138,7 +120,7 @@ def test_case4_transcribed_from_repl():
     assert graaf['aargh'] == set()
     assert graaf['zowie'] == {'bowie'}
 
-    # 5) woorden met pad naar 'zowie'
+    # woorden met pad naar 'zowie'
     pred2 = kortste_pad(graaf, 'zowie')
     reachable_zowie = sorted([w for w in words if pred2[w] is not None])
     assert reachable_zowie == ['bogie', 'bowie', 'dogie', 'doxie', 'movie', 'moxie', 'zowie']

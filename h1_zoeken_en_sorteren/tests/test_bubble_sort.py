@@ -1,5 +1,5 @@
 import pytest
-from h1_zoeken_en_sorteren.bubble_sort import bubble_sort  # pas dit pad aan indien nodig
+from h1_zoeken_en_sorteren.bubble_sort import bubble_sort
 
 @pytest.mark.timeout(10)
 @pytest.mark.parametrize("rij, expected_stdout", [

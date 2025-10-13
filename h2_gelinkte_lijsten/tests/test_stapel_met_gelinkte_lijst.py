@@ -1,11 +1,9 @@
-# h2_gelinkte_lijsten/tests/test_stack_list.py
 import pytest
-from h2_gelinkte_lijsten.stapel_met_gelinkte_lijst import StackList  # pad evt. aanpassen
+from h2_gelinkte_lijsten.stapel_met_gelinkte_lijst import StackList
 
-
+# test is_empty, push, peek en pop
 @pytest.mark.timeout(1)
-def test_stacklist_dodona_case_0():
-    """Simuleer 0.in/0.out: basishandelingen met strings."""
+def test_stacklist_basic_functions():
     s = StackList()
     assert s.is_empty() is True
 
@@ -30,7 +28,7 @@ def test_lifo_order_with_integers():
     s = StackList()
     for x in [1, 2, 3, 4, 5]:
         s.push(x)
-    # LIFO: 5→4→3→2→1
+    # LIFO: 5 → 4 → 3 → 2 → 1
     for expected in [5, 4, 3, 2, 1]:
         assert s.pop() == expected
     assert s.is_empty() is True
@@ -55,7 +53,6 @@ def test_large_sequence():
     n = 1000
     for i in range(n):
         s.push(i)
-    # pop back and spot-check
     assert s.peek() == n - 1
     assert s.pop() == n - 1
     assert s.pop() == n - 2
