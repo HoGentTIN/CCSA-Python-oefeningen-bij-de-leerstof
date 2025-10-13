@@ -7,10 +7,10 @@ from h2_gelinkte_lijsten.stapel_met_gelinkte_lijst import StackList  # pad evt. 
 def test_stacklist_dodona_case_0():
     """Simuleer 0.in/0.out: basishandelingen met strings."""
     s = StackList()
-    assert s.empty() is True
+    assert s.is_empty() is True
 
     s.push("This")
-    assert s.empty() is False
+    assert s.is_empty() is False
     assert s.peek() == "This"
 
     s.push("Is")
@@ -19,10 +19,10 @@ def test_stacklist_dodona_case_0():
 
     assert s.pop() == "A Test"
     assert s.pop() == "Is"
-    assert s.empty() is False
+    assert s.is_empty() is False
 
     assert s.pop() == "This"
-    assert s.empty() is True
+    assert s.is_empty() is True
 
 
 @pytest.mark.timeout(1)
@@ -33,7 +33,7 @@ def test_lifo_order_with_integers():
     # LIFO: 5→4→3→2→1
     for expected in [5, 4, 3, 2, 1]:
         assert s.pop() == expected
-    assert s.empty() is True
+    assert s.is_empty() is True
 
 
 @pytest.mark.timeout(1)
@@ -46,7 +46,7 @@ def test_peek_does_not_remove():
     assert s.pop() == "Y"
     assert s.peek() == "X"
     assert s.pop() == "X"
-    assert s.empty() is True
+    assert s.is_empty() is True
 
 
 @pytest.mark.timeout(2)
@@ -62,6 +62,6 @@ def test_large_sequence():
     # leegmaken
     for _ in range(n - 2):
         s.pop()
-    assert s.empty() is True
+    assert s.is_empty() is True
 
 
