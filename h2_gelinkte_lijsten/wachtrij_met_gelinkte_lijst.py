@@ -14,7 +14,8 @@ class QueueList:
         return self.kop is None
 
     def enqueue(self,data):
-        self.staart = self.Knoop(data,self.staart)
+        pass
+       
 
     def front(self):
         pass
