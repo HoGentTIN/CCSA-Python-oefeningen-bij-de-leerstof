@@ -4,6 +4,7 @@ class StackList:
         def __init__(self, data=None, volgende=None):
             pass
 
+
     def __init__(self):
         pass
 

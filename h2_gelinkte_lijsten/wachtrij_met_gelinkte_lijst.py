@@ -6,6 +6,7 @@ class QueueList:
             self.data = data
             self.volgende = volgende
 
+
     def __init__(self) -> None:
         pass
 
@@ -14,7 +15,6 @@ class QueueList:
 
     def enqueue(self,data):
         pass
-       
 
     def front(self):
         pass

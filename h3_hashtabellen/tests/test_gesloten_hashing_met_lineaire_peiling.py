@@ -102,3 +102,12 @@ def test_delete_geeft_false_voor_niet_bestaand_element():
     assert h.delete(999) is False
     # bestaand element blijft vindbaar
     assert h.index_of(1) != -1
+
+
+@pytest.mark.timeout(2)
+def test_dubbels_worden_niet_toegevoegd():
+    h = HashSet()
+    # toevoegen OK
+    assert h.add(1) == 1
+    # dubbel niet toegevoegd
+    assert h.add(1) == -1
