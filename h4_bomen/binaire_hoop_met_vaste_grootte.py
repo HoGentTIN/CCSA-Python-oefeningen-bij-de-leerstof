@@ -3,7 +3,7 @@ class BinaryHeap:
     def __init__(self, max_size=10):
         pass
 
-    def empty(self):
+    def is_empty(self):
         pass
     
     def get_min_elem(self):

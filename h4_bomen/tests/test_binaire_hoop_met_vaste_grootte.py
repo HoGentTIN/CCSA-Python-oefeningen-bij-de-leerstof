@@ -5,10 +5,10 @@ from h4_bomen.binaire_hoop_met_vaste_grootte import BinaryHeap
 @pytest.mark.timeout(2)
 def test_binary_heap_case_0():
     b = BinaryHeap()
-    assert b.empty() is True
+    assert b.is_empty()
 
     b.insert_elem(3)
-    assert b.empty() is False
+    assert not b.is_empty()
 
     b.insert_elem(1)
     b.insert_elem(2)
@@ -20,7 +20,7 @@ def test_binary_heap_case_0():
     assert b.remove_min_elem() == 2
     assert b.remove_min_elem() == 3
     assert str(b) == "[]"
-    assert b.empty() is True
+    assert b.is_empty()
 
 
 @pytest.mark.timeout(2)
@@ -64,8 +64,8 @@ def test_binary_heap_case_2_large():
 def test_single_element_insert_and_remove():
     b = BinaryHeap()
     b.insert_elem(42)
-    assert b.empty() is False
+    assert not b.is_empty()
     assert b.get_min_elem() == 42
     assert b.remove_min_elem() == 42
-    assert b.empty() is True
+    assert b.is_empty()
     assert str(b) == "[]"
