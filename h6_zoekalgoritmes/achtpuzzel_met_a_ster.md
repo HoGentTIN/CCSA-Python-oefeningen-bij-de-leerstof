@@ -43,7 +43,7 @@ om tot de toestand in dit plan te komen *in de juiste volgorde* teruggeeft.
 Schrijf een methode `a_ster_zoeken` die het A*-algoritme implementeert in zijn graafgebaseerde variant, d.w.z. dat er een gesloten lijst wordt bijgehouden van toestanden die reeds zijn geëxpandeerd.
  Deze methode  heeft de volgende parameters:
 
-- `start_puzzel`. De puzzel van waar het zoekproces vertrekt
+- `start_toestand`. De toestand van waaruit het zoekproces vertrekt (hier dus de AchtPuzzel waarmee je start).
 - `is_doel`. Een functie die van een toestand kan zeggen of het doel bereikt werd of niet.
 - `heuristiek`. Een functie die een toestand afbeeldt op zijn heuristische waarde
 - `kost`. Een functie met twee argumenten: een toestand en een actie. Deze functie geeft 
