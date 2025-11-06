@@ -3,10 +3,10 @@
 ## Implementatie van de 8-puzzel
 
 Schrijf een klasse `AchtPuzzel` die een instantie van een 8-puzzel voorstelt.
-Deze klassen `AchtPuzzel` heeft de volgende methoden:
+Deze klasse `AchtPuzzel` heeft de volgende methoden:
  
-- `__init__(self, bord)`: de constructor. Hieraan geef je optioneel een string mee van lengte 9 bestaande uit de cijfers 0 t.e.m. 8. Deze string stelt een 8-puzzel voor, waarbij 0 staat voor het lege vakje.  Wanneer je geen argumenten meegeeft dan wordt een bord opgebouwd wat het "standaard" doelbord is, nl. alle cijfers staan in oplopende volgorde en de blanco staat rechtsonderaan.
-- `opvolgers(self)`: Deze methode geeft een `set` terug van paren. Elk paar `(a, s)` staat voor een actie `a` en een nieuwe `AchtPuzzel` `s`. Zoals uitgelegd in de cursus beschouwen we de acties in termen  van de beweging van het lege vakje.  We gebruiken de letters `B`(oven), `O`nder, `L`inks en `R`rechts. Je kan deze `dict` gebruiken om deze methode vlotter te implementeren:
+- `__init__(self, bord)`: de constructor. Hieraan geef je optioneel een string mee van lengte 9 bestaande uit de cijfers 0 t.e.m. 8. Deze string stelt een 8-puzzel voor, waarbij 0 staat voor het lege vakje.  Wanneer je geen argumenten meegeeft dan wordt een "standaard" doelbord opgebouwd, met alle cijfers in oplopende volgorde en het lege vakje rechtsonderaan.
+- `opvolgers(self)`: Deze methode geeft een `set` terug van paren. Elk paar `(a, s)` staat voor een actie `a` en een nieuwe `AchtPuzzel` `s`. Zoals uitgelegd in de cursus beschouwen we de acties in termen  van de beweging van het lege vakje.  We gebruiken de letters `B`(oven), `O`(nder), `L`(inks) en `R`(rechts). Je kan deze `dict` gebruiken om deze methode vlotter te implementeren:
 ```
  BUREN = {0 : {("R", 1),("O", 3)},       1 : {("L", 0),("R", 2),("O", 4)},        2 : {("L",1),("O",5)},
           3 : {("B",0),("R",4),("O",6)}, 4 : {("B",1),("L", 3),("R", 5),("O",7)}, 5 : {("B",2),("L", 4),("O",8)},
@@ -23,8 +23,8 @@ De betekenis hiervan is als volgt. Voor het vakje linksbovenaan (met index 0) ka
 Schrijf een klasse `Plan`. Deze klasse houdt een aantal attributen bij:
 
 - `toestand`: de omschrijving van de huidige toestand
-- `voorganger`: een ander plan. Deze voorganger is zodanig dat het uitvoeren van de actie in het huidig plan op de toestand in de voorganger de toestand van dit plan oplevert.
 - `actie`: de actie uitgevoerd om deze toestand te bereiken
+- `voorganger`: een ander plan. Het uitvoeren van de actie in het huidig plan op de toestand in de voorganger levert de toestand van dit plan op.
 - `kost`: de totale kost om hier te geraken
 - `h_waarde`: de waarde van de heuristiek voor de huidige toestand
 
@@ -41,14 +41,14 @@ om tot de toestand in dit plan te komen *in de juiste volgorde* teruggeeft.
 ## Implementatie van het A*-algoritme
 
 Schrijf een methode `a_ster_zoeken` die het A*-algoritme implementeert in zijn graafgebaseerde variant, d.w.z. dat er een gesloten lijst wordt bijgehouden van toestanden die reeds zijn geëxpandeerd.
- Deze methode  heeft de volgende parameters:
+Deze methode  heeft de volgende parameters:
 
 - `start_toestand`. De toestand van waaruit het zoekproces vertrekt (hier dus de AchtPuzzel waarmee je start).
 - `is_doel`. Een functie die van een toestand kan zeggen of het doel bereikt werd of niet.
 - `heuristiek`. Een functie die een toestand afbeeldt op zijn heuristische waarde
 - `kost`. Een functie met twee argumenten: een toestand en een actie. Deze functie geeft 
 aan wat de kost is van het uitvoeren van de actie in de gegeven toestand. Een default-implementatie
-zou als volgt kunnen zijn `kost= lambda s,a : 1` die aangeeft dat het uitvoeren van om het even welke actie een kost heeft van 1.
+zou als volgt kunnen zijn: `kost = lambda s, a : 1`, wat aangeeft dat het uitvoeren van om het even welke actie een kost heeft van 1.
 
 De methode `a_ster_zoeken` retourneert een tupel `(actie_sequentie, kost)` wanneer een oplossing
 werd gevonden of `None` wanneer er geen oplossing werd gevonden. 
@@ -56,8 +56,8 @@ werd gevonden of `None` wanneer er geen oplossing werd gevonden.
 Tips: 
 
 - Maak (uiteraard) gebruik van de klasse `Plan` voor het implementeren van deze methode.
-- Om dezelfde oplossing te verkrijgen als in de testen roep je `sorted` aan op de return-waarde van de `opvolgers`. Op die manier worden de acties steeds in dezelfde volgorde geprobeerd.
-- Om de prioriteitswachtrij de implementeren kan je gebruikmaken van de ingebouwde module `heapq`. Hier een kort voorbeeld van het gebruik
+- Om dezelfde oplossing te verkrijgen als in de testen roep je `sorted` aan op de returnwaarde van `opvolgers`. Op die manier worden de acties steeds in dezelfde volgorde geprobeerd.
+- Om de prioriteitswachtrij te implementeren kan je gebruik maken van de ingebouwde module `heapq`. Hier een kort voorbeeld van het gebruik:
 ```
 import heapq
 wachtrij = []

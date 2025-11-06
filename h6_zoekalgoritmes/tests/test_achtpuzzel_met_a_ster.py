@@ -49,13 +49,17 @@ def test_manhattan():
     assert s2.manhattan_heuristiek(s2) == 0    
 
 @pytest.mark.timeout(2)
-def test_plan_geef_actiesequentie():
+def test_plan_lt(): 
+    # test of __lt__ correct werkt
     p1 = Plan(toestand="s1", voorganger=None, actie=None, kost=0, h_waarde=100)
     assert not p1 < p1
     p2 = Plan(toestand="s2", voorganger=p1, actie=None, kost=50, h_waarde=75)
     assert p1 < p2
     assert p2 > p1
     assert not p2 < p1
+
+@pytest.mark.timeout(2)
+def test_plan_geef_actiesequentie():
     p1 = Plan(toestand="s1", voorganger=None, actie=None, kost=0, h_waarde=100)
     assert p1.geef_actie_sequentie() == []
     p2 = Plan(toestand="s2", voorganger=p1, actie="a1", kost=10, h_waarde=90)
