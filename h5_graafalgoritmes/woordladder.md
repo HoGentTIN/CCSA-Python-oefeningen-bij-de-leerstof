@@ -31,7 +31,7 @@ False
 
 ## Opbouwen van een graaf
 
-We zullen de graaf voorstellen aan de hand van een "dictionary" of "map" (i.e. een `dict` in Python). De sleutels van deze `dict` zijn de verschillende woorden, de waarden zijn verzamelingen (`set`) van woorden. Schrijf een methode `maak_graaf` die een lijst van woorden meekrijgt als invoerparameter. De returnwaarde van deze methode is een `dict` die de ongerichte en ongewogen graaf voorstelt.  Deze methode kan als volgt worden gebruikt:
+We zullen de graaf voorstellen aan de hand van een "dictionary" of "map" (i.e. een `dict` in Python). De sleutels van deze `dict` zijn de verschillende woorden, de waarden zijn verzamelingen (`set`) van woorden. Schrijf een methode `maak_graaf` die een lijst van woorden meekrijgt als invoerparameter. De returnwaarde van deze methode is een `dict` die de ongerichte en ongewogen graaf voorstelt. Deze methode kan als volgt worden gebruikt:
 ```
 >>> words = ["aa", "ab", "ac", "ad", "ba", "bb", "bc", "bd", "ca", "cb", "cc", "cd", "da", "db", "dc", "dd"]
 >>> graaf = maak_graaf(words)
@@ -43,9 +43,12 @@ We zullen de graaf voorstellen aan de hand van een "dictionary" of "map" (i.e. e
 
 ## Impliciet berekenen van kortste paden
 
-Schrijf een methode met een graaf `g` en een woord `w` als invoer  die een `dict` teruggeeft die `string`s afbeeldt op `string`s. De betekenis van deze dictionary is de volgende. Als woord `w1` afgebeeld wordt op woord `w2` dan is woord `w2` de directe voorganger van `w1` op het gevonden 
-kortste pad van woord `w` naar `w1`. M.a.w. het pad van `w` naar `w1` heeft als laatste boog `(w2,w1)`.
-Noem deze methode `kortste_pad`. Deze methode kan je als volgt gebruiken.
+Schrijf een methode `kortste_pad` met een graaf `g` en een woord `w` als invoer  die een `dict` teruggeeft die `string`s afbeeldt op `string`s. De betekenis van deze dictionary is de volgende. 
+- Als woord `w1` afgebeeld wordt op `None` wil dit zeggen dat er geen pad bestaat van `w` naar `w1`.
+- Als woord `w1` afgebeeld wordt op woord `w2` dan is woord `w2` de directe voorganger van `w1` op het gevonden 
+kortste pad van woord `w` naar `w1`. M.a.w. het pad van `w` naar `w1` heeft als laatste boog `(w2,w1)`. 
+
+Deze methode kan je als volgt gebruiken:
 ```
 >>> words = ["aa", "ab", "ac", "ad", "ba", "bb", "bc", "bd", "ca", "cb", "cc", "cd", "da", "db", "dc", "dd"]
 >>> graaf = maak_graaf(words)

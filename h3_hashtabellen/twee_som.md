@@ -1,6 +1,6 @@
 # Implementatie van de twee som puzzel
 
-Gegeven een rij van gehele getallen en een doelgetal, eveneens geheel. Maak de methode `two_sum` die de indices retourneert in een tupel van de twee getallen die samen als som het doelgetal hebben.  
+Gegeven een rij van natuurlijke getallen en een doelgetal, eveneens natuurlijk. Maak de methode `two_sum` die de indices retourneert in een tupel van de twee getallen die samen als som het doelgetal hebben.  
 - Ga ervan uit dat er maar één oplossing mogelijk is.
 - Je mag een element niet twee keer gebruiken.  
 - Geef de indices van de twee getallen in stijgende volgorde. Geef `None` terug als er geen paar wordt gevonden.  
