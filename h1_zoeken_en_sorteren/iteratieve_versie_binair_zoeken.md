@@ -2,9 +2,9 @@
 
 Implementeer het algoritme voor binair zoeken zoals gespecifieerd in de cursus.
 Om te kunnen verifiëren of het algoritme correct werd geïmplementeerd,
-druk je de linker- en rechtgrens af als eerste opdracht in de `while`-lus.
+druk je de linker- en rechtergrens af als eerste opdracht in de `while`-lus.
 
-Noem je methode `zoek_binair`.
+De functiedefinitie van `zoek_binair` werd gegeven als [startcode](./iteratieve_versie_binair_zoeken.py)
 
 ## Voorbeeld
 
@@ -12,7 +12,7 @@ Noem je methode `zoek_binair`.
 Een voorbeeld van uitvoering vind je hieronder.
 
 ```
-index = zoek_binair([0, 10, 20, 30, 40, 50, 60, 70, 80, 90], 70)
+index = zoek_binair(70, [0, 10, 20, 30, 40, 50, 60, 70, 80, 90])
 print(f"index = {index}")
 ```
 Geeft als uitvoer

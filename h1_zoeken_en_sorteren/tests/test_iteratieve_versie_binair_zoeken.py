@@ -2,7 +2,7 @@ import pytest
 from h1_zoeken_en_sorteren.iteratieve_versie_binair_zoeken import zoek_binair
 
 @pytest.mark.timeout(1)
-@pytest.mark.parametrize("zoekItem, rij, verwachte_returnwaarde, verwachte_console_output", [
+@pytest.mark.parametrize("zoekitem, rij, verwachte_returnwaarde, verwachte_console_output", [
     (70, [0, 10, 20, 30, 40, 50, 60, 70, 80, 90], 7, 
      ("0, 9\n"
      "5, 9\n"
@@ -151,8 +151,8 @@ from h1_zoeken_en_sorteren.iteratieve_versie_binair_zoeken import zoek_binair
        "0, 3\n"
        "2, 3\n")),
 ])
-def test_zoek_binair(capsys, zoekItem, rij, verwachte_returnwaarde, verwachte_console_output):
-    result = zoek_binair(zoekItem, rij)
+def test_zoek_binair(capsys, zoekitem, rij, verwachte_returnwaarde, verwachte_console_output):
+    result = zoek_binair(zoekitem, rij)
     captured = capsys.readouterr()  # vangt stdout/stderr output op
     assert result == verwachte_returnwaarde
     assert captured.out.strip() == verwachte_console_output.strip()
